@@ -19,7 +19,7 @@ cd ~
 
 1. Download the complete codebase repository from git hub.
 Download the start_up.sh file from git hub.
-wget https://github.com/Kulamanipradhan0/knab_dwh/blob/main/start_up.sh
+wget https://github.com/Kulamanipradhan0/knab_dwh_v2/blob/main/start_up.sh
 
 chmod 775 start_up.sh
 sh start_up.sh
