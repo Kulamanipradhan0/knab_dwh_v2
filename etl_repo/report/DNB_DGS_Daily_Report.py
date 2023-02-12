@@ -9,10 +9,10 @@ report_name='DNB_Deposito Garantie Stelsel_'+as_of_date
 report_query='''select 
 as_of_date as "As Of",
 c.bsn_number AS "Social Security Number", 
-c.full_name AS "Customer name",sum(a.opening_balance*ac.weighting_factor) as "Closing Balance",
+c.full_name AS "Customer name",sum(a.closing_balance*ac.weighting_factor) as "Closing Balance",
 CASE 
-         WHEN ( sum(a.opening_balance*ac.weighting_factor) ) >= 100000 THEN 100000 
-         ELSE sum(a.opening_balance*ac.weighting_factor)
+         WHEN ( sum(a.closing_balance*ac.weighting_factor) ) >= 100000 THEN 100000 
+         ELSE sum(a.closing_balance*ac.weighting_factor)
        END                           "Pay Out Amount" ,
        'EUR' AS "Currency" from dwh_own.fac_acc_balance a
 left join dwh_own.xref_account_to_customer ac 
