@@ -9,10 +9,10 @@ sudo apt-get install wget
 sudo apt-get install unzip
 
 rm -r knab_dwh-main
-wget https://github.com/Kulamanipradhan0/knab_dwh/archive/refs/heads/main.zip
-unzip main.zip
+wget https://github.com/Kulamanipradhan0/knab_dwh_v2/archive/refs/heads/main.zip
+unzip knab_dwh_v2-main.zip
 
-cd knab_dwh-main
+cd knab_dwh_v2-main
 
 docker build -t knab_dwh_pg -f Dockerfile_pg .
 docker run -id --rm --name knab_dwh_pg -p 9000:5432 knab_dwh_pg
