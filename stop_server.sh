@@ -1,0 +1,2 @@
+docker stop knab_dwh_pg
+docker stop knab_dwh_airflow

@@ -1,0 +1,39 @@
+FROM ubuntu
+
+RUN apt-get update 
+RUN apt-get -y install python3.7 
+RUN apt-get -y install postgresql-client
+RUN apt-get install -y pip
+
+RUN mkdir -p /code_base/airflow/dags 
+RUN mkdir -p /code_base/airflow/logs 
+RUN mkdir -p /code_base/airflow/plugins 
+RUN mkdir -p /code_base/log_files 
+RUN mkdir -p /code_base/src_files 
+RUN mkdir -p /code_base/etl_repo
+
+ENV AIRFLOW_HOME=/code_base/airflow
+ENV TZ=UTC
+
+COPY airflow/dags/ /code_base/airflow/dags/ 
+COPY airflow/airflow.cfg /code_base/airflow/
+COPY etl_repo /code_base/etl_repo/
+COPY etl_repo/report/DNB_DGS_Daily_Report.py /code_base/etl_repo/report/
+COPY etl_repo/report/DNB_DGS_Last_Year_Report.py /code_base/etl_repo/report/
+COPY etl_repo/report/config /code_base/etl_repo/report/
+COPY src_files /code_base/src_files/
+
+RUN pip install "apache-airflow==2.1.2" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.1.2/constraints-no-providers-3.7.txt"
+
+RUN airflow db init
+RUN airflow users  create --role Admin --username admin --email admin --firstname admin --lastname admin --password admin
+
+RUN pip install psycopg2-binary 
+RUN pip install apache-airflow['cncf.kubernetes']
+RUN pip install pandas 
+RUN pip install xlsxwriter
+
+RUN echo "localhost:9000:*:postgres:password" >> ~/.pgpass 
+RUN chmod 600 ~/.pgpass 
+
+ENTRYPOINT airflow webserver --port 8080 & airflow scheduler

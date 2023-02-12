@@ -1,0 +1,7 @@
+file_name;record_count
+acnt;7
+crm_a;6
+crm_b;4
+fin_txn_a;6
+fin_txn_b;5
+xref_cust_acnt;7
