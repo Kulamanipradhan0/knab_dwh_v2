@@ -14,7 +14,6 @@
 \i /code_base/db_scripts/staging/stage_own_fin_txn_a.sql
 \i /code_base/db_scripts/staging/stage_own_fin_txn_b.sql
 \i /code_base/db_scripts/staging/stage_own_acnt.sql
---\i /code_base/db_scripts/staging/stage_own_xref_cust_acnt.sql
 
 
 \echo Partition Function
