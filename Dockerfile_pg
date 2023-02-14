@@ -1,0 +1,11 @@
+FROM postgres:11.13
+
+ENV POSTGRES_PASSWORD=password
+EXPOSE 5432
+EXPOSE 9000
+
+ADD db_scripts/ /code_base/db_scripts/
+COPY db_scripts/knab_dwh_usr_create_knab_dwh_database_objects.sql /docker-entrypoint-initdb.d/
+
+ENTRYPOINT set -e && nohup bash -c "docker-entrypoint.sh postgres" 
+
