@@ -30,9 +30,6 @@ elif table_name == 'acnt':
 	src_column_list = ["txn_date", "account_no", "customer_id", "account_type", "opening_balance", "closing_balance"]
 	tgt_column_list = ["txn_date", "account_no", "customer_id", "account_type", "opening_balance", "closing_balance",
 					   "batch_identifier", "source"]
-elif table_name == 'xref_cust_acnt':
-	src_column_list = ["account_no", "customer_id"]
-	tgt_column_list = ["account_no", "customer_id","batch_identifier", "source"]
 elif table_name == 'fin_txn_a' or table_name == 'fin_txn_b':
 	src_column_list = ["DateTime", "account_no", "Description", "credit_debit_ind", "txn_amount"]
 	tgt_column_list = ["Date_Time", "account_no", "Description", "credit_debit_ind", "txn_amount", "batch_identifier",
